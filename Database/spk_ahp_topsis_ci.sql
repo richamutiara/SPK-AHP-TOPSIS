@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2022 at 09:40 PM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Dec 31, 2022 at 06:12 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +31,7 @@ CREATE TABLE `alternatif` (
   `id_alternatif` int(11) NOT NULL,
   `id_kelas` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `alternatif`
@@ -50,7 +49,11 @@ INSERT INTO `alternatif` (`id_alternatif`, `id_kelas`, `nama`) VALUES
 (15, 1, 'Semi Al Jabar'),
 (16, 1, 'Afika Sri Laras Sati'),
 (17, 2, 'Selvia Indriani'),
-(18, 2, 'Nina aja');
+(18, 2, 'Nina aja'),
+(19, 2, 'amel'),
+(20, 2, 'reno'),
+(21, 2, 'iki'),
+(22, 1, 'ariel');
 
 -- --------------------------------------------------------
 
@@ -62,25 +65,29 @@ CREATE TABLE `hasil` (
   `id_hasil` int(11) NOT NULL,
   `id_alternatif` int(11) NOT NULL,
   `nilai` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `hasil`
 --
 
 INSERT INTO `hasil` (`id_hasil`, `id_alternatif`, `nilai`) VALUES
-(1, 7, 0.657278),
-(2, 8, 0.652414),
-(3, 9, 0.367731),
-(4, 10, 0.680437),
-(5, 11, 0.104383),
-(6, 12, 0.188367),
-(7, 13, 0.15875),
-(8, 14, 0.381663),
-(9, 15, 0.15875),
-(10, 16, 0.94765),
-(11, 17, 0.367731),
-(12, 18, 0.257394);
+(1, 7, 0.680529),
+(2, 8, 0.666667),
+(3, 9, 0.428535),
+(4, 10, 0.705935),
+(5, 11, 0.170468),
+(6, 12, 0.280014),
+(7, 13, 0.26317),
+(8, 14, 0.440287),
+(9, 15, 0.26317),
+(10, 16, 0.943324),
+(11, 17, 1),
+(12, 18, 0.666667),
+(13, 19, 0.333333),
+(14, 20, 0),
+(15, 21, 0.352542),
+(16, 22, 0.666667);
 
 -- --------------------------------------------------------
 
@@ -91,7 +98,7 @@ INSERT INTO `hasil` (`id_hasil`, `id_alternatif`, `nilai`) VALUES
 CREATE TABLE `kelas` (
   `id_kelas` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `kelas`
@@ -99,7 +106,8 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id_kelas`, `nama`) VALUES
 (1, '6-A'),
-(2, '6-B');
+(2, '6-B'),
+(4, '5-A');
 
 -- --------------------------------------------------------
 
@@ -113,7 +121,7 @@ CREATE TABLE `kriteria` (
   `kode_kriteria` varchar(100) NOT NULL,
   `bobot` float DEFAULT NULL,
   `jenis` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `kriteria`
@@ -137,7 +145,7 @@ CREATE TABLE `kriteria_ahp` (
   `id_kriteria_2` int(11) NOT NULL,
   `nilai_1` float NOT NULL,
   `nilai_2` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `kriteria_ahp`
@@ -162,7 +170,7 @@ CREATE TABLE `penilaian` (
   `id_alternatif` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `nilai` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `penilaian`
@@ -208,15 +216,7 @@ INSERT INTO `penilaian` (`id_penilaian`, `id_alternatif`, `id_kriteria`, `nilai`
 (37, 16, 38, 18),
 (38, 16, 39, 23),
 (39, 16, 40, 26),
-(40, 16, 41, 30),
-(41, 17, 38, 20),
-(42, 17, 39, 22),
-(43, 17, 40, 27),
-(44, 17, 41, 31),
-(45, 18, 38, 21),
-(46, 18, 39, 22),
-(47, 18, 40, 26),
-(48, 18, 41, 30);
+(40, 16, 41, 30);
 
 -- --------------------------------------------------------
 
@@ -229,7 +229,7 @@ CREATE TABLE `sub_kriteria` (
   `id_kriteria` int(11) NOT NULL,
   `deskripsi` varchar(200) NOT NULL,
   `nilai` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sub_kriteria`
@@ -242,16 +242,16 @@ INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `id_kriteria`, `deskripsi`, `nila
 (21, 38, '<=84,99', 1),
 (22, 39, 'sangat baik', 4),
 (23, 39, 'baik', 3),
-(24, 39, 'cukup', 2),
-(25, 39, 'buruk', 1),
+(24, 39, 'cukup baik', 2),
+(25, 39, 'kurang baik', 1),
 (26, 40, 'selalu hadir', 4),
-(27, 40, 'hadir', 3),
-(28, 40, 'kadang2 hair', 2),
-(29, 40, 'jarang hadir', 1),
+(27, 40, 'cukup hadir', 3),
+(28, 40, 'jarang hadir', 2),
+(29, 40, 'izin', 1),
 (30, 41, 'sangat aktif', 4),
 (31, 41, 'aktif', 3),
 (32, 41, 'cukup aktif', 2),
-(33, 41, 'jarang aktif', 1);
+(33, 41, 'kurang aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -267,7 +267,7 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
@@ -279,7 +279,8 @@ INSERT INTO `user` (`id_user`, `id_user_level`, `id_kelas`, `nama`, `email`, `us
 (8, 1, 2, 'Budi Utomo', 'budi@utomo', 'budi', '00dfc53ee86af02e742515cdcf075ed3'),
 (9, 2, 1, 'Abizal Almansyah', 'abizal@gmail', 'abizal', '2c04a432096caae0617b42b9885f47bd'),
 (10, 2, 2, 'Selvia Indriani', 'sel@vi', 'selvi', 'e7de9abd2abe6288bbbc928c62ae58ad'),
-(11, 2, 2, 'Nina aja', 'nina@aja', 'nina', 'f2ceea1536ac1b8fed1a167a9c8bf04d');
+(11, 2, 2, 'Nina aja', 'nina@aja', 'nina', 'f2ceea1536ac1b8fed1a167a9c8bf04d'),
+(12, 2, 1, 'Afika Sri Laras Sati', 'afika@fika', 'afika', 'd94ac5196f76d7562f5f9fd7ab478484');
 
 -- --------------------------------------------------------
 
@@ -290,7 +291,7 @@ INSERT INTO `user` (`id_user`, `id_user_level`, `id_kelas`, `nama`, `email`, `us
 CREATE TABLE `user_level` (
   `id_user_level` int(11) NOT NULL,
   `user_level` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user_level`
@@ -374,19 +375,19 @@ ALTER TABLE `user_level`
 -- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `hasil`
 --
 ALTER TABLE `hasil`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
@@ -404,7 +405,7 @@ ALTER TABLE `kriteria_ahp`
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `sub_kriteria`
@@ -416,7 +417,7 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_level`
@@ -447,12 +448,6 @@ ALTER TABLE `penilaian`
 --
 ALTER TABLE `sub_kriteria`
   ADD CONSTRAINT `sub_kriteria_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_user_level`) REFERENCES `user_level` (`id_user_level`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
