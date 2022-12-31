@@ -38,7 +38,6 @@ class Alternatif extends CI_Controller
     public function create()
     {
         $data['page'] = "Alternatif";
-        $data['list_kelas'] = $this->Alternatif_model->list_kelas();
         $this->load->view('alternatif/create', $data);
     }
 
