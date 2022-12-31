@@ -47,11 +47,13 @@ class Alternatif extends CI_Controller
     {
         $data = [
             'nama' => $this->input->post('nama'),
-            'id_kelas' => $this->input->post('kelas')
+            // 'id_kelas' => $this->input->post('kelas')
         ];
 
+        $data['id_kelas'] = $this->session->userdata('id_kelas');
+
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('kelas', 'Kelas', 'required');
+        // $this->form_validation->set_rules('kelas', 'Kelas', 'required');
 
         if ($this->form_validation->run() != false) {
             $result = $this->Alternatif_model->insert($data);

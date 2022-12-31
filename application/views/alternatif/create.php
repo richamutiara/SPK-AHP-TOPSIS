@@ -22,7 +22,7 @@
 				<label class="font-weight-bold">Nama Alternatif</label>
 				<input autocomplete="off" type="text" name="nama" required class="form-control" />
 			</div>
-			<div class="form-group col-md-6">
+			<!-- <div class="form-group col-md-6">
 				<label class="font-weight-bold">Kelas</label>
 				<select class="form-control" name="kelas" required>
 					<option value="">--Pilih Kelas--</option>
@@ -30,7 +30,7 @@
 						<option value="<?php echo $k->id_kelas ?>"><?php echo $k->nama ?></option>
 					<?php endforeach; ?>
 				</select>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="card-footer text-right">

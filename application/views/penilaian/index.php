@@ -2,21 +2,22 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Kelas <?= $kelas->nama; ?></h1>
-	<div class="flex">
-		<a href="<?= base_url('Penilaian/format_excel'); ?>" class="btn btn-primary btn-icon-split ">
-			<span class="icon text-white-50">
-				<i class="fas fa-file-download"></i>
-			</span>
-			<span class="text">Format Excel </span>
-		</a>
-		<button type="button" class="btn btn-success btn-icon-split " data-toggle="modal" data-target="#modalImport">
-			<span class="icon text-white-50">
-				<i class="fas fa-file-upload"></i>
-			</span>
-			<span class="text">Import Excel </span>
-		</button>
-
-	</div>
+	<?php if ($data_excel > 0) : ?>
+		<div class="flex">
+			<a href="<?= base_url('Penilaian/format_excel'); ?>" class="btn btn-primary btn-icon-split ">
+				<span class="icon text-white-50">
+					<i class="fas fa-file-download"></i>
+				</span>
+				<span class="text">Format Excel </span>
+			</a>
+			<button type="button" class="btn btn-success btn-icon-split " data-toggle="modal" data-target="#modalImport" <?php if ($data_excel == 0) { ?> disabled <?php   } ?>>
+				<span class="icon text-white-50">
+					<i class="fas fa-file-upload"></i>
+				</span>
+				<span class="text">Import Excel </span>
+			</button>
+		</div>
+	<?php endif; ?>
 </div>
 
 <?= $this->session->flashdata('message'); ?>
